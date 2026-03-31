@@ -1,411 +1,64 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Happy Birthday, Hiba 🌸</title>
-  <link rel="icon" href="tulip-mail.png" type="image/gif" sizes="16x16">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Monsieur+La+Doulaise&family=Jost:wght@200;300&display=swap" rel="stylesheet"/>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">
+  <title>Countdown Timer</title>
+  <link rel="icon" href="timer.png" type="image/gif" sizes="16x16">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --rose:    #e8a4b8;
-      --blush:   #f5d0dc;
-      --petal:   #fce8ef;
-      --deep:    #7a3552;
-      --cream:   #fdf6f0;
-      --gold:    #c9956a;
-    }
-
-    html, body {
-      min-height: 100vh;
-      background: var(--cream);
-      overflow-x: hidden;
-      cursor: default;
-    }
-
-    /* ── ambient background ── */
-    body::before {
-      content: '';
-      position: fixed; inset: 0;
-      background:
-        radial-gradient(ellipse 80% 60% at 20% 10%,  #fce8ef88 0%, transparent 60%),
-        radial-gradient(ellipse 60% 80% at 85% 80%,  #e8a4b830 0%, transparent 55%),
-        radial-gradient(ellipse 50% 40% at 60% 40%,  #f5d0dc20 0%, transparent 50%);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    /* ── floating hearts canvas ── */
-    #hearts-canvas {
-      position: fixed; inset: 0;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    /* ── main wrapper ── */
-    .page {
-      position: relative;
-      z-index: 2;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 60px 24px;
-      gap: 0;
-    }
-
-    /* ── decorative top line ── */
-    .deco-line {
-      width: 1px;
-      height: 80px;
-      background: linear-gradient(to bottom, transparent, var(--rose));
-      margin-bottom: 32px;
-      animation: growLine 1.4s ease forwards;
-      transform-origin: top;
-    }
-    @keyframes growLine { from { transform: scaleY(0); opacity:0; } to { transform: scaleY(1); opacity:1; } }
-
-    /* ── "for" label ── */
-    .for-label {
-      font-family: 'Jost', sans-serif;
-      font-weight: 200;
-      font-size: 0.75rem;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: var(--gold);
-      opacity: 0;
-      animation: fadeUp 1s ease 0.6s forwards;
-      margin-bottom: 12px;
-    }
-
-    /* ── name ── */
-    .name {
-      font-family: 'Monsieur La Doulaise', cursive;
-      font-size: clamp(5rem, 18vw, 10rem);
-      color: var(--deep);
-      line-height: 1;
-      opacity: 0;
-      animation: fadeUp 1.2s ease 0.9s forwards;
-      text-shadow: 0 4px 30px #e8a4b860;
-      margin-bottom: 8px;
-    }
-
-    /* ── divider petals ── */
-    .petal-row {
-      display: flex; gap: 6px; align-items: center;
-      opacity: 0;
-      animation: fadeUp 1s ease 1.3s forwards;
-      margin-bottom: 40px;
-    }
-    .petal-row span { font-size: 1rem; animation: sway 3s ease-in-out infinite; }
-    .petal-row span:nth-child(2) { animation-delay: 0.3s; }
-    .petal-row span:nth-child(3) { animation-delay: 0.6s; font-size: 0.7rem; }
-    .petal-row span:nth-child(4) { animation-delay: 0.9s; }
-    .petal-row span:nth-child(5) { animation-delay: 1.2s; font-size: 0.7rem; }
-    .petal-row span:nth-child(6) { animation-delay: 1.5s; }
-    @keyframes sway {
-      0%,100% { transform: rotate(-8deg); }
-      50%      { transform: rotate(8deg); }
-    }
-
-    /* ── card ── */
-    .card {
-      background: rgba(255,255,255,0.6);
-      backdrop-filter: blur(16px);
-      border: 1px solid rgba(232,164,184,0.3);
-      border-radius: 2px;
-      padding: 48px 52px;
-      max-width: 640px;
-      width: 100%;
-      position: relative;
-      opacity: 0;
-      animation: fadeUp 1.2s ease 1.6s forwards;
-      box-shadow:
-        0 2px 4px rgba(122,53,82,0.04),
-        0 12px 40px rgba(232,164,184,0.18),
-        inset 0 1px 0 rgba(255,255,255,0.8);
-    }
-
-    /* corner ornaments */
-    .card::before, .card::after {
-      content: '✦';
-      position: absolute;
-      color: var(--rose);
-      font-size: 0.8rem;
-      opacity: 0.6;
-    }
-    .card::before { top: 14px; left: 18px; }
-    .card::after  { bottom: 14px; right: 18px; }
-
-    /* ── animated message lines ── */
-    .message {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1rem, 2.4vw, 1.2rem);
-      font-weight: 300;
-      color: #5a3045;
-      line-height: 1.95;
+    body {
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: white;
       text-align: center;
+      margin-top: 100px;
     }
-
-    .message .line {
-      display: block;
-      overflow: hidden;
-    }
-
-    .message .line span {
-      display: inline-block;
-      transform: translateY(110%);
-      opacity: 0;
-      animation: slideUp 0.9s cubic-bezier(0.16,1,0.3,1) forwards;
-    }
-
-    /* staggered delays for each line */
-    .line:nth-child(1)  span { animation-delay: 2.0s; }
-    .line:nth-child(2)  span { animation-delay: 2.25s; }
-    .line:nth-child(3)  span { animation-delay: 2.5s; }
-    .line:nth-child(4)  span { animation-delay: 2.75s; }
-    .line:nth-child(5)  span { animation-delay: 3.0s; }
-    .line:nth-child(6)  span { animation-delay: 3.25s; }
-    .line:nth-child(7)  span { animation-delay: 3.5s; }
-    .line:nth-child(8)  span { animation-delay: 3.75s; }
-
-    @keyframes slideUp {
-      to { transform: translateY(0); opacity: 1; }
-    }
-
-    .message em {
-      font-style: italic;
-      color: var(--deep);
-    }
-
-    /* ── signature ── */
-    .signature {
-      margin-top: 36px;
-      font-family: 'Monsieur La Doulaise', cursive;
-      font-size: 2rem;
-      color: var(--rose);
-      text-align: center;
-      opacity: 0;
-      animation: fadeUp 1s ease 4.3s forwards;
-    }
-
-    /* ── bottom deco ── */
-    .bottom-deco {
-      margin-top: 40px;
-      font-family: 'Jost', sans-serif;
-      font-weight: 200;
-      font-size: 0.7rem;
-      letter-spacing: 0.3em;
-      color: var(--gold);
-      opacity: 0;
-      animation: fadeUp 1s ease 4.6s forwards;
-      text-transform: uppercase;
-    }
-
-    .deco-line-bottom {
-      width: 1px;
-      height: 60px;
-      background: linear-gradient(to bottom, var(--rose), transparent);
+    #countdown {
+      font-size: 50px;
       margin-top: 20px;
-      opacity: 0;
-      animation: fadeUp 1s ease 4.8s forwards;
-    }
-
-    /* ── shared keyframe ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(18px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ── wish button ── */
-    .wish-btn {
-      margin-top: 28px;
-      padding: 12px 32px;
-      background: transparent;
-      border: 1px solid var(--rose);
-      border-radius: 2px;
-      font-family: 'Jost', sans-serif;
-      font-weight: 200;
-      font-size: 0.8rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--deep);
-      cursor: pointer;
-      opacity: 0;
-      animation: fadeUp 1s ease 5s forwards;
-      transition: background 0.3s, color 0.3s, transform 0.2s;
-      position: relative;
-    }
-    .wish-btn:hover { background: var(--blush); transform: translateY(-2px); }
-    .wish-btn:active { transform: scale(0.97); }
-
-    /* ── popup ── */
-    .wish-popup {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) scale(0.85);
-      background: rgba(255,255,255,0.85);
-      backdrop-filter: blur(18px);
-      border: 1px solid rgba(232,164,184,0.5);
-      border-radius: 4px;
-      padding: 36px 52px;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.3rem, 4vw, 1.8rem);
-      font-style: italic;
-      color: var(--deep);
-      text-align: center;
-      box-shadow: 0 16px 60px rgba(232,164,184,0.35);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.16,1,0.3,1);
-      z-index: 100;
-    }
-    .wish-popup.show {
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(1);
-      pointer-events: auto;
-    }
-
-    /* ── responsive ── */
-    @media (max-width: 500px) {
-      .card { padding: 36px 28px; }
-    }
-    #wish-popup{
-      background-image: url(sabiq.jpeg);
-      
     }
   </style>
 </head>
 <body>
 
-<canvas id="hearts-canvas"></canvas>
 
-<div class="page">
-  <div class="deco-line"></div>
+  <div id="countdown">Loading...</div>
 
-  <p class="for-label">A birthday wish for</p>
+  <script>
+    // 🔧 SET YOUR DATE & TIME HERE
+    const targetDate = new Date("April 4, 2026 00:00:00").getTime();
 
-  <h1 class="name">Hiba</h1>
+    // 🔗 SET YOUR REDIRECT LINK HERE
+    const redirectURL = "index.html";
 
-  <div class="petal-row">
-    <span>🌸</span>
-    <span>🌺</span>
-    <span>✦</span>
-    <span>🌺</span>
-    <span>✦</span>
-    <span>🌸</span>
-  </div>
+    const countdownElement = document.getElementById("countdown");
 
-  <div class="card">
-    <p class="message">
-      <span class="line"><span>I’ve actually wanted to talk to you properly for a while—</span></span>
-      <span class="line"><span>like really get to know you… your interests, what you enjoy, what you’re passionate about.</span></span>
-      <span class="line"><span>But every time I get the chance, I somehow end up talking about random things</span></span>
-      <span class="line"><span>that probably don’t even matter to you 😅</span></span>
-      <span class="line"><span>So yeah… I guess what I’ve been trying to say is—</span></span>
-      <span class="line"><span>I’d just like to talk to you, for real this time.</span></span>
-      <span class="line"><span>And if you’re up for it,</span></span>
-      <span class="line"><span>maybe we could get to know each other better and be friends 🙂</span></span>
-    </p>
+    const timer = setInterval(function () {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
 
-    <p class="message" style="margin-top:24px;">
-      <span class="line"><span>I hope this birthday brings you every ounce of happiness</span></span>
-      <span class="line"><span>you so effortlessly give to everyone around you.</span></span>
-      <span class="line"><span><em>Happy Birthday, Hiba.</em> 🌸</span></span>
-      <span class="line"><span><em>-Sabiq</em></span></span>
-    </p>
-  </div>
+      if (distance <= 0) {
+        clearInterval(timer);
+       // countdownElement.innerHTML = "Redirecting...";
+        
+        // 🚀 Redirect when time is up
+        window.location.href = redirectURL;
+        return;
+      }
 
-  <!-- re-delay these extra lines -->
-  <style>
-    .card p:nth-child(2) .line:nth-child(1) span { animation-delay: 4.0s; }
-    .card p:nth-child(2) .line:nth-child(2) span { animation-delay: 4.15s; }
-    .card p:nth-child(2) .line:nth-child(3) span { animation-delay: 4.3s; }
-  </style>
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((distance / (1000 * 60)) % 60);
+      const seconds = Math.floor((distance / 1000) % 60);
 
-  <p class="signature">— Someone who thinks you're wonderful</p>
-
-  <p class="bottom-deco">Make a wish · Today & Always</p>
-
-  <button class="wish-btn" onclick="makeWish(this)">🕯️ Make a Wish</button>
-  <div id="wish-popup" class="wish-popup">i already made mine 😌</div>
-
-  <div class="deco-line-bottom"></div>
-</div>
-
-<script>
-    
-  /* ── floating hearts ── */
-  const canvas = document.getElementById('hearts-canvas');
-  const ctx    = canvas.getContext('2d');
-
-  function resize() {
-    canvas.width  = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  resize();
-  window.addEventListener('resize', resize);
-
-  const COLORS = ['#e8a4b8','#f5d0dc','#c9956a','#d4789a','#fce8ef'];
-  const SYMBOLS = ['♡', '✦', '·'];
-
-  class Particle {
-    constructor() { this.reset(true); }
-    reset(init = false) {
-      this.x    = Math.random() * canvas.width;
-      this.y    = init ? Math.random() * canvas.height : canvas.height + 20;
-      this.size = Math.random() * 14 + 6;
-      this.speed= Math.random() * 0.5 + 0.2;
-      this.drift= (Math.random() - 0.5) * 0.4;
-      this.alpha= Math.random() * 0.35 + 0.1;
-      this.color= COLORS[Math.floor(Math.random() * COLORS.length)];
-      this.sym  = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
-      this.rot  = Math.random() * Math.PI * 2;
-      this.rotS = (Math.random() - 0.5) * 0.01;
-    }
-    update() {
-      this.y   -= this.speed;
-      this.x   += this.drift;
-      this.rot += this.rotS;
-      if (this.y < -30) this.reset();
-    }
-    draw() {
-      ctx.save();
-      ctx.globalAlpha = this.alpha;
-      ctx.fillStyle   = this.color;
-      ctx.font        = `${this.size}px serif`;
-      ctx.textAlign   = 'center';
-      ctx.translate(this.x, this.y);
-      ctx.rotate(this.rot);
-      ctx.fillText(this.sym, 0, 0);
-      ctx.restore();
-    }
-  }
-
-  const particles = Array.from({ length: 55 }, () => new Particle());
-
-  function loop() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particles.forEach(p => { p.update(); p.draw(); });
-    requestAnimationFrame(loop);
-  }
-  loop();
-
-  /* ── wish popup ── */
-  function makeWish(btn) {
-    const popup = document.getElementById('wish-popup');
-    popup.classList.add('show');
-    btn.disabled = true;
-    setTimeout(() => {
-      popup.classList.remove('show');
-      btn.disabled = false;
-    }, 2800);
-  }
-</script>
+      countdownElement.innerHTML =
+        days + "d " +
+        hours + "h " +
+        minutes + "m " +
+        seconds + "s ";
+    }, 1000);
+  </script>
 
 </body>
 </html>
