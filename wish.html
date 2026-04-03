@@ -425,6 +425,10 @@
       audio.currentTime = 0;
       btn.innerText = "Play";
     }
+    audio.addEventListener("ended", function() {
+    btn.innerText = "Play";
+  });
+
   }
 </script>
 
