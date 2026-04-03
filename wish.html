@@ -334,6 +334,13 @@
   <button class="wish-btn" onclick="makeWish(this)">🕯️ Make a Wish</button>
   <div id="wish-popup" class="wish-popup">i already made mine 😌</div>
 
+  <button class="wish-btn" onclick="toggleAudio()" id="btn">Play</button>
+
+  <audio id="myAudio">
+    <source src="Happy Birthday Instrumental.mp3" type="audio/mpeg">
+      Your browser does not support audio.
+  </audio>
+
   <div class="deco-line-bottom"></div>
 </div>
 
@@ -404,6 +411,20 @@
       popup.classList.remove('show');
       btn.disabled = false;
     }, 2800);
+  }
+
+  const audio = document.getElementById("myAudio");
+  const btn = document.getElementById("btn");
+
+  function toggleAudio() {
+    if (audio.paused) {
+      audio.play();
+      btn.innerText = "Stop";
+    } else {
+      audio.pause();
+      audio.currentTime = 0;
+      btn.innerText = "Play";
+    }
   }
 </script>
 
